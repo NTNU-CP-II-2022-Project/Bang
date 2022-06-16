@@ -146,6 +146,7 @@ void print_position(struct Player player1, struct Player player2, struct Player 
 }
 
 void print_player(struct Player player[4], int viewer){
+	int h = 0;
 	for (int i=0; i<4; i++){
 		//player_ID
 		printf("Player%d ", player[i].player_ID);
@@ -156,10 +157,11 @@ void print_player(struct Player player[4], int viewer){
 			printf("DEAD  ");
 		}
 		else{
-			for (int i=0; i<player[i].health; i++){
+			h = player[i].health;
+			for (int i=0; i<h; i++){
 				printf("1");
 			}
-			for (int i=0; i<6-player[i].health; i++){
+			for (int i=0; i<6-h; i++){
 				printf(" ");
 			}
 		}
