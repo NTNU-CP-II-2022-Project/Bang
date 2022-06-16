@@ -202,9 +202,14 @@ int main(void){
       if (fold_card_flag > 0){
         while (1){
           clear_stdin();
-          printf("是否要使用角色能力 : 從棄牌堆中抽取第一張卡 ( y | n ) : ");
           char ans[3];
-          fgets(ans, 3, stdin);
+          if (player[current_player_id_turn-1].AI == 1){
+            ans[0] == 'y';
+          }
+          else{
+            printf("是否要使用角色能力 : 從棄牌堆中抽取第一張卡 ( y | n ) : ");
+            fgets(ans, 3, stdin);
+          }
           if (ans[0] == 'y'){
     	      normal = 0;
     	      Pedro_Ramirez(current_player_id_turn);
@@ -402,8 +407,10 @@ void Pedro_Ramirez(int current_player_id_turn){
     }
     system("clear");
     print_allPlayers(player,current_player_id_turn);
-    print_hand(player[current_player_id_turn-1]);
-    printf("已完成使用能力抽卡 目前持有手牌如上\n");
+    if (!player[current_player_id_turn-1].AI){
+      print_hand(player[current_player_id_turn-1]);
+      printf("已完成使用能力抽卡 目前持有手牌如上\n");
+    }
     sleep(5);
     return;
 }
